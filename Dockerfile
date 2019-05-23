@@ -15,4 +15,5 @@ ENV CI_SFDX_ORG ciorg
 ENV CI_SFDX_KEY assets/server.key
 ENV CI_SFDX_SCRATCH_DEF config/project-scratch-def.json
 COPY sfdx-test.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/sfdx-test.sh
 CMD bash
