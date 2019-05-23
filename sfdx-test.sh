@@ -27,3 +27,4 @@ echo "$TEST_RUN_ID is our test ID to return result.xml"
 sfdx force:apex:test:report -i $TEST_RUN_ID -r junit | tee report.xml
 cat report.xml
 sfdx force:org:delete -u $CI_SFDX_ORG -p
+echo "Completed our SFDX testing stage"
