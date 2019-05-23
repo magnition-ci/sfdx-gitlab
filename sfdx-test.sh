@@ -17,6 +17,8 @@ if [ ! -f "$CI_PROJECT_DIR/$CI_SFDX_SCRATCH_DEF" ];then
   exit 1
 fi
 
+sfdx update
+sfdx plugins --core
 sfdx force:auth:jwt:grant --clientid $CI_SFDX_CONSUMER_KEY --jwtkeyfile "$CI_PROJECT_DIR/$CI_SFDX_KEY" --username $CI_SFDX_USERNAME --setdefaultdevhubusername -a GitlabCICDExt
 sfdx force:org:create -v GitlabCICDExt -s -f "$CI_PROJECT_DIR/$CI_SFDX_SCRATCH_DEF" -a $CI_SFDX_ORG
 sfdx force:source:push -u $CI_SFDX_ORG
