@@ -22,7 +22,7 @@ sfdx force:org:create -v GitlabCICDExt -s -f "$CI_PROJECT_DIR/$CI_SFDX_SCRATCH_D
 sfdx force:source:push -u $CI_SFDX_ORG
 sfdx force:apex:test:run -u $CI_SFDX_ORG --wait 10 -c -r json | tee result.json
 cat result.json | python -c "import json, sys; c=reduce(lambda x, y : (x[0]+y[0], x[1]+y[1]),[(x['totalCovered'], x['totalLines']) for x in json.load(sys.stdin)['result']['coverage']['coverage']], (0, 0)); print 'Total Coverage: %f' % (c[0]/float(c[1])*100 if c[1] else 100)"
-TEST_RUN_ID=$(cat result.json | python -c "import json, sys; data = json.load(sys.stdin); for testrunid in data['result']['summary']['testRunId'] : print(testrunid)")
+TEST_RUN_ID=$(cat result.json | python -c "import json, sys; data = json.load(sys.stdin); print(data['result']['summary']['testRunId']);")
 echo "$TEST_RUN_ID is our test ID to return result.xml"
 sfdx force:apex:test:report -i $TEST_RUN_ID -r junit | tee report.xml
 cat report.xml
