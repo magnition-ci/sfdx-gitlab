@@ -1,4 +1,4 @@
-FROM simkim/salesforcedx
+FROM ncino/ci-sfdx
 VOLUME /app
 WORKDIR /app
 RUN apt-get update && apt-get install -y \
