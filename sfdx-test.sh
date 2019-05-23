@@ -28,6 +28,6 @@ TEST_RUN_ID=$(cat result.json | python -c "import json, sys; data = json.load(sy
 echo "$TEST_RUN_ID is our test ID to return result.xml"
 mkdir -p testout
 sfdx force:apex:test:report -i $TEST_RUN_ID -r junit -d testout/
-cat testout/junit.xml
+cat testout/test-result.xml
 sfdx force:org:delete -u $CI_SFDX_ORG -p
 echo "Completed our SFDX testing stage"
