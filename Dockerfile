@@ -1,4 +1,4 @@
-FROM kymunr/sfdx-base
+FROM magnition-ci/sfdx-base
 VOLUME /app
 WORKDIR /app
 RUN apt-get update && apt-get install -y \
